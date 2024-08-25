@@ -66,30 +66,25 @@ function parseOperatorInput(operatorChoice) {
         SET first = previous result
         SET operator
     */
-    if (first) {
+    if (first && second) {
+        first = operate(operator, +first, +second);
         operator = operatorChoice;
-        console.log(operator);
+        second = null;
+    }
+    else if (first) {
+        operator = operatorChoice;
+    }
+    else if (prevResult) {
+        first = prevResult;
+        operator = operatorChoice;
     }
 };
 
 
-/*
-ELSE IF button == equals
-    IF first and second and operator
-        CALCULATE the result
-        STORE result in prevResult
-        set first, second, and operator to null
-    ELSE
-        do nothing (?)
-    ENDIF
-*/
-
 equalsButton.addEventListener('click', () => {
     if (first && second && operator) {
         // calculate input and display
-        const result = operate(operator, +first, +second);
-        currExpression.textContent = result;
-        prevResult = result;
+        prevResult = operate(operator, +first, +second);
         first = null;
         second = null;
         operator = null;
@@ -97,18 +92,26 @@ equalsButton.addEventListener('click', () => {
 })
 
 function operate(operator, first, second) {
+    let result;
     switch (operator) {
         case '+': 
-            return add(first, second);
+            result = add(first, second);
+            break;
         case '-':
-            return subtract(first, second);
+            result = subtract(first, second);
+            break;
         case '*': 
-            return multiply(first, second);
+            result = multiply(first, second);
+            break;
         case '/': 
-            return divide(first, second);
+            result = divide(first, second);
+            break;
         case '^':
-            return power(first, second);
+            result = power(first, second);
+            break;
     }
+    currExpression.textContent = result;
+    return result;
 }
 
 function add(x, y) {return x + y;}
