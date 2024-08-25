@@ -10,6 +10,15 @@ const numberButtons = document.querySelectorAll('.number-btn');
 const operatorButtons = document.querySelectorAll('.operator-btn');
 const equalsButton = document.querySelector('.equals-btn');
 const decimalButton = document.querySelector('.decimal-btn');
+const clearButton = document.querySelector('.clear-btn');
+
+clearButton.addEventListener('click', () => {
+    first = null;
+    second = null;
+    operator = null;
+    currExpression.textContent = '0';
+    prevExpression.textContent = '';
+})
 
 decimalButton.addEventListener('click', () => {
     if (second && !second.includes('.')) {
