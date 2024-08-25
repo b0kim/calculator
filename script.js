@@ -8,6 +8,7 @@ let operator;
 
 const numberButtons = document.querySelectorAll('.number-btn');
 const operatorButtons = document.querySelectorAll('.operator-btn');
+const equalsButton = document.querySelector('.equals-btn');
 
 numberButtons.forEach( button => {
     button.addEventListener('click', () => {
@@ -83,6 +84,17 @@ ELSE IF button == equals
     ENDIF
 */
 
+equalsButton.addEventListener('click', () => {
+    if (first && second && operator) {
+        // calculate input and display
+        const result = operate(operator, +first, +second);
+        currExpression.textContent = result;
+        prevResult = result;
+        first = null;
+        second = null;
+        operator = null;
+    }
+})
 
 function operate(operator, first, second) {
     switch (operator) {
