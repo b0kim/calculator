@@ -1,4 +1,22 @@
-1. This is a simple calculator which can add, subtract, multiply, and divide
+
+Project Specification: Design a simple calculator which supports decimal numbers and
+    the following operations:
+    - add, subtract
+    - multiply, divide
+    - exponentiation
+    - modulus
+
+Personal Goals:
+    Primary goal: gain experience with javascript
+    Secondary goals:
+    - improve my use of CSS flexbox
+    - explore different color palettes
+
+Next Steps:
+    - Create the basic design structure of the calculator
+    - Choose a color palette for the calculator
+    - Style the shapes/sizes of the buttons and the screen
+    - begin implementing javascript
 
 2. A calculator operation will consist of a number, an operator, and another number. For example, 3 + 5. Create three variables for each of the parts of a calculator operation. Create a variable for the first number, the operator, and the second number. You’ll use these variables to update your display later.
 
