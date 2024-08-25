@@ -11,6 +11,7 @@ const operatorButtons = document.querySelectorAll('.operator-btn');
 const equalsButton = document.querySelector('.equals-btn');
 const decimalButton = document.querySelector('.decimal-btn');
 const clearButton = document.querySelector('.clear-btn');
+const delButton = document.querySelector('.del-btn');
 
 clearButton.addEventListener('click', () => {
     first = null;
@@ -19,6 +20,18 @@ clearButton.addEventListener('click', () => {
     currExpression.textContent = '0';
     prevExpression.textContent = '';
 })
+
+delButton.addEventListener('click', () => {
+    if (second) {
+        second = second.slice(0, -1);
+        currExpression.textContent = second;
+    }
+    else if (first) {
+        first = first.slice(0, -1);
+        currExpression.textContent = first;
+    }
+})
+
 
 decimalButton.addEventListener('click', () => {
     if (second && !second.includes('.')) {
