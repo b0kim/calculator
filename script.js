@@ -77,6 +77,10 @@ decimalButton.addEventListener('click', () => {
         second += '.';
         currExpression.textContent = second;
     }
+    else if (first && operator) {
+        second = '0.';
+        currExpression.textContent = second;
+    }
     else if (!second && first && !first.includes('.')) {
         first += '.';
         currExpression.textContent = first;
