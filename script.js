@@ -12,6 +12,45 @@ const equalsButton = document.querySelector('.equals-btn');
 const decimalButton = document.querySelector('.decimal-btn');
 const clearButton = document.querySelector('.clear-btn');
 const delButton = document.querySelector('.del-btn');
+const negButton = document.querySelector('.neg-btn');
+
+negButton.addEventListener('click', () => {
+    if (second) {
+        if (second[0] === '-') {
+            second = second.slice(1);
+        } 
+        else {
+            second = '-' + second;
+        }
+        currExpression.textContent = second;
+    }
+    else if (first && operator) {
+        second = '-';
+        currExpression.textContent = second;
+    }
+    else if (first) {
+        if (first[0] === '-') {
+            first = first.slice(1);
+        }
+        else {
+            first = '-' + first;
+        }
+        currExpression.textContent = first;
+    }
+    else if (prevResult) {  
+        if (prevResult[0] === '-') {
+            prevResult = prevResult.slice(1);
+        }
+        else {
+            prevResult = '-' + prevResult;
+        }
+        currExpression.textContent = prevResult;
+    }
+    else {
+        first = '-';
+        currExpression.textContent = first;
+    }
+})
 
 clearButton.addEventListener('click', () => {
     first = null;
