@@ -13,7 +13,6 @@ Personal Goals:
     - explore different color palettes
 
 Next Steps:
-    - Create the basic design structure of the calculator
     - Choose a color palette for the calculator
     - Style the shapes/sizes of the buttons and the screen
     - begin implementing javascript
