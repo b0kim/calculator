@@ -170,6 +170,12 @@ function operate(operator, first, second) {
             break;
     }
     result = result.toFixed(4);
+    while (result.includes('.') && result[result.length - 1] === '0') {
+        result = result.slice(0, -1);
+    }
+    if (result[result.length - 1] === '.') {
+        result = result.slice(0, -1);
+    }
     currExpression.textContent = result;
     prevExpression.textContent = `${first} ${operator} ${second} = ${result}`;
     return result;
