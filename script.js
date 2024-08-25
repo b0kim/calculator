@@ -10,6 +10,7 @@ let operator;
 
 
 
+
 function operate(operator, first, second) {
     switch (operator) {
         case '+': 
