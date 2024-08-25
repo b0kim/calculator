@@ -7,12 +7,21 @@ let second;
 let operator;
 
 const numberButtons = document.querySelectorAll('.number-btn');
+const operatorButtons = document.querySelectorAll('.operator-btn');
+
 numberButtons.forEach( button => {
     button.addEventListener('click', () => {
         const digitChoice = button.dataset.choice; 
         parseDigitInput(digitChoice);
     })
 });
+
+operatorButtons.forEach( button => {
+    button.addEventListener('click', () => {
+        const operatorChoice = button.dataset.choice;
+        parseOperatorInput(operatorChoice);
+    })
+})
 
 function parseDigitInput(digit) {
     /*
@@ -27,7 +36,15 @@ function parseDigitInput(digit) {
                 and start new expression)
     */
     // if none aka display cleared
-    if (first) {
+    if (second) {
+        second += digit;
+        currExpression.textContent = second;
+    }
+    else if (operator) {
+        second = digit;
+        currExpression.textContent = second;
+    }
+    else if (first) {
         first += digit;
         currExpression.textContent = first;
     }
@@ -37,18 +54,8 @@ function parseDigitInput(digit) {
     }
 }
 
-
-/*
-IF button == digit:
-    IF second
-        APPEND digit to end of second
-    ELSE IF operator
-        SET second = digit
-    ELSE IF first
-        APPEND digit to end of first
-    ELSE
-        SET = first (if there is a previous result, wipe it out and start new expression)
-ELSE IF button == operator
+function parseOperatorInput(operatorChoice) {
+    /*
     IF there is already first and second number:
         CALCULATE the result (as if we pressed equals)
         STORE the result in first
@@ -57,11 +64,15 @@ ELSE IF button == operator
     ELSE if there is a previous result
         SET first = previous result
         SET operator
-    ELSE if there is a first number
-        SET operator
-    ELSE 
-        do nothing
-    ENDIF
+    */
+    if (first) {
+        operator = operatorChoice;
+        console.log(operator);
+    }
+};
+
+
+/*
 ELSE IF button == equals
     IF first and second and operator
         CALCULATE the result
