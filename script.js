@@ -9,6 +9,22 @@ let operator;
 const numberButtons = document.querySelectorAll('.number-btn');
 const operatorButtons = document.querySelectorAll('.operator-btn');
 const equalsButton = document.querySelector('.equals-btn');
+const decimalButton = document.querySelector('.decimal-btn');
+
+decimalButton.addEventListener('click', () => {
+    if (second && !second.includes('.')) {
+        second += '.';
+        currExpression.textContent = second;
+    }
+    else if (!second && first && !first.includes('.')) {
+        first += '.';
+        currExpression.textContent = first;
+    } 
+    else if (!second && !first) {
+        first = '0.';
+        currExpression.textContent = first;
+    }
+})
 
 numberButtons.forEach( button => {
     button.addEventListener('click', () => {
@@ -25,18 +41,6 @@ operatorButtons.forEach( button => {
 })
 
 function parseDigitInput(digit) {
-    /*
-    IF second
-        APPEND digit to end of second
-    ELSE IF operator
-        SET second = digit
-    ELSE IF first
-        APPEND digit to end of first
-    ELSE
-        SET = first (if there is a previous result, wipe it out 
-                and start new expression)
-    */
-    // if none aka display cleared
     if (second) {
         second += digit;
         currExpression.textContent = second;
@@ -56,16 +60,6 @@ function parseDigitInput(digit) {
 }
 
 function parseOperatorInput(operatorChoice) {
-    /*
-    IF there is already first and second number:
-        CALCULATE the result (as if we pressed equals)
-        STORE the result in first
-        SET operator
-        SET second to null
-    ELSE if there is a previous result
-        SET first = previous result
-        SET operator
-    */
     if (first && second) {
         first = operate(operator, +first, +second);
         operator = operatorChoice;
@@ -110,7 +104,9 @@ function operate(operator, first, second) {
             result = power(first, second);
             break;
     }
+    result = result.toFixed(4);
     currExpression.textContent = result;
+    prevExpression.textContent = `${first} ${operator} ${second} = ${result}`;
     return result;
 }
 
